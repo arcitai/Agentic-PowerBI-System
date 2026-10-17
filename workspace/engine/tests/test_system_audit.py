@@ -226,9 +226,9 @@ class SystemAuditTests(unittest.TestCase):
         temporary, _publisher, upstream, _checkout = _fixture()
         self.addCleanup(temporary.cleanup)
         identities = (
-            "https://github.com/onlinesourdough/Agentic-PowerBI-System.git",
-            "ssh://git@github.com/onlinesourdough/Agentic-PowerBI-System.git",
-            "git@github.com:onlinesourdough/Agentic-PowerBI-System.git",
+            "https://github.com/arcitai/Agentic-PowerBI-System.git",
+            "ssh://git@github.com/arcitai/Agentic-PowerBI-System.git",
+            "git@github.com:arcitai/Agentic-PowerBI-System.git",
             str(upstream),
             upstream.as_uri(),
         )
