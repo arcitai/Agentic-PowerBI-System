@@ -1,5 +1,7 @@
 # Agentic Power BI System
 
+Maintained by [Arc’IT AI](https://github.com/arcitai).
+
 Turn a business question into a Power BI model and report you can check and
 maintain. The system provides skills for defining measures, building the model,
 designing reports and validating the files, with records of each result.
