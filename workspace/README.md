@@ -1,7 +1,9 @@
-# Workspace
+# Optional compatibility workspace
 
-`workspace/` is the persistent operational truth for the Agentic Power BI
-System. It is a local filesystem contract, not a service or a shared store.
+`workspace/` is the existing Agentic Power BI System seed and evidence flow.
+It remains available to standalone users. New Factory module work uses the
+adopting project’s existing brief and evidence instead; see
+[module adoption](../docs/factory-module.md). No records are migrated or deleted.
 
 - `PROJECT-BRIEF.md` is the active decision, KPI, data, security, refresh, and
   publish contract.

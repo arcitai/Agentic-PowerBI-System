@@ -1,7 +1,7 @@
 {
   "name": "agentic-powerbi-system",
   "version": "0.2.0",
-  "description": "Agentic Power BI System: a standalone, decision-first Power BI workflow with durable proof.",
+  "description": "Power BI domain module for Factory: preparation, specialist skills and deterministic validation.",
   "keywords": [
     "agentic-system",
     "agent-skills",

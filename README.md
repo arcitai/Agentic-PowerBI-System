@@ -1,33 +1,51 @@
-# Agentic Power BI System
+# Power BI for Factory
 
-Maintained by [Arc’IT AI](https://github.com/arcitai).
+A Power BI domain module for [Factory](https://github.com/arcitai/factory),
+maintained by [Arc’IT AI](https://github.com/arcitai).
 
-Turn a business question into a Power BI model and report you can check and
-maintain. The system provides skills for defining measures, building the model,
-designing reports and validating the files, with records of each result.
+Factory supplies the common Foundation, AgentOps and ADLC method. This module
+adds the Power BI preparation, specialist skills and checks needed to make a
+Power BI Factory: from a business question to a model and report you can verify.
+It adds no separate orchestration service or mandatory application runtime.
+
+| Part | What this module adds |
+| --- | --- |
+| [Power BI Foundation](.agents/skills/powerbi-foundation/SKILL.md) | Decision and KPI context, data/model ownership, project files, available tools, refresh/access boundaries and readiness evidence |
+| [Power BI ADLC](.agents/skills/powerbi-adlc/SKILL.md) | Domain criteria and routing for specification, model/DAX/report work, review and authorized delivery |
+| [Specialist skills](.agents/skills/README.md) | Power BI, PBIP/PBIR/TMDL, DAX, reports, Fabric, validation and domain audit |
+| [Local checks](docs/validation.md) | A dependency-free PBIP/PBIR/TMDL validator and synthetic valid/invalid fixtures |
+
+Factory continues to own general work admission, coordination and delivery
+rules. The Power BI module supplies the specialist knowledge and proof.
+ADLC means **Agentic Development Lifecycle**.
+
+## Use the module
+
+1. Adopt a reviewed Factory revision through its normal
+   [Foundation route](https://github.com/arcitai/factory/tree/v0.1.18/foundation/factory-foundation).
+2. Keep a reviewed checkout or extracted package of this module intact. Follow
+   [module adoption](docs/factory-module.md); copying isolated skill files would
+   lose their linked domain contracts and tools.
+3. Use **Power BI Foundation** to assess the intended work against the adopting
+   project's existing brief and environment. Reuse known context and evidence.
+4. Use **Power BI ADLC** alongside the applicable Factory skills for an accepted
+   task. Models come before reports when both need building; a page plan alone
+   does not require a model or Desktop installation.
+5. Keep outcomes and evidence in the adopting project's existing records.
+   Module adoption does not require a second ledger in this repository.
 
 ```text
+Factory core + Power BI preparation, skills and checks → Power BI Factory
 business question → definitions and data → model → report → decision → proof
 ```
 
-Start from the project brief, resolved business context, or an approved Agentic
-Design System handoff. This repository owns the Power BI solution after the
-handoff while preserving the decision, data, security, refresh, and publish
-boundaries.
+The module is a method and tool bundle, not an auto-installed Factory plugin.
+The repository and npm identifiers remain `Agentic-PowerBI-System` and
+`agentic-powerbi-system` for compatibility. Existing standalone users can keep
+using the [legacy evidence route](.agents/skills/agentic-powerbi-system/SKILL.md)
+and workspace described below; their records are not migrated or deleted.
 
-## Start
-
-1. For a Power BI outcome, resolve relevant gaps in
-   [workspace/PROJECT-BRIEF.md](workspace/PROJECT-BRIEF.md) using existing context.
-2. Use the [repository-local skill index](.agents/skills/README.md) to select a
-   route, beginning with
-   `.agents/skills/agentic-powerbi-system/SKILL.md` for System work.
-3. Keep business definitions next to their measure, format, interpretation, and
-   limitation.
-4. For model/report builds, establish the model before the report.
-5. Make each report page answer one named business question.
-6. Validate PBIP/PBIR/TMDL edits before opening or claiming completion;
-   publishing also requires its own authority and evidence.
+## Verify this repository
 
 ```sh
 npm run doctor
@@ -36,30 +54,6 @@ npm test
 npm run audit -- --scope both
 npm pack --dry-run
 ```
-
-## What is included
-
-- One primary System skill for durable routing and run evidence.
-- Specialist skills for Power BI, PBIP/PBIR/TMDL, DAX, reports, Fabric, and
-  validation.
-- A dependency-free PBIP/PBIR/TMDL validator and valid/invalid fixtures.
-- A standard-library tracer for success, failure, recovery, and deliberate
-  example promotion.
-
-## Workflow
-
-![Agentic Power BI System workflow](docs/agentic-power-bi-system-overview.svg)
-
-| Need | Route |
-| --- | --- |
-| System routing, prior runs, and evidence | `.agents/skills/agentic-powerbi-system/SKILL.md` |
-| Business question, KPI, and decision | `.agents/skills/powerbi/SKILL.md` |
-| PBIP/PBIR/TMDL structure and safe edits | `.agents/skills/pbip/SKILL.md` |
-| Measures and semantic logic | `.agents/skills/dax/SKILL.md` |
-| Report pages, visuals, layout, and filters | `.agents/skills/report/SKILL.md` |
-| Fabric or Power BI Service work | `.agents/skills/fabric/SKILL.md` |
-| Completion proof | `.agents/skills/validation/SKILL.md` |
-| Periodic accumulated-state health | `.agents/skills/system-audit/SKILL.md` |
 
 ## Distinct assurance routes
 
@@ -91,7 +85,7 @@ composition, tokens, and preview intent. Revalidate it against actual Power BI
 capabilities, data, accessibility, and tenant constraints; the handoff is
 reference input, not an execution requirement.
 
-## Persistent workspace
+## Optional compatibility workspace
 
 ```text
 workspace/
@@ -108,7 +102,7 @@ examples/                  deliberately curated standalone proof
 docs/                      contract and validation notes
 ```
 
-The primary route inspects prior records before routing work. It never copies
+The optional legacy `agentic-powerbi-system` route inspects prior records before routing work. It never copies
 request transcripts into the ledger. A run is valid without promotion; a
 curated example is written only when explicitly requested and includes its own
 README and proof file.
@@ -126,7 +120,7 @@ generated local Power BI state out of Git and fixtures.
 placeholders and deliberate curated examples, and refuses to bundle mutable
 workspace evidence without deleting or resetting it.
 
-## Deterministic System proof
+## Compatibility evidence-runner proof
 
 Run the full local route in a disposable checkout or temporary copy:
 

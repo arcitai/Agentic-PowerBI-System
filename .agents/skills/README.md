@@ -1,17 +1,21 @@
-# Repository-local skill shelf
+# Power BI module skill shelf
 
-This standalone System owns this shelf. New repeatable methods specific to
-Power BI or this System live here; cross-project and Global skills stay
-plugin- or harness-installed outside the repository. AIOS, templates, and
-releases may invoke these repository-local skills, but they do not overwrite
-them.
+This module owns Power BI-specific methods and tools. Factory owns the general
+Foundation, AgentOps and ADLC method. An adopting project owns its product
+rules, business context and evidence. Keep the module's linked files together;
+see [adoption](../../docs/factory-module.md).
 
-Each direct skill uses the standard `.agents/skills/<name>/SKILL.md` path. The
-folder name and the skill's frontmatter `name` must agree.
+Each direct skill uses `.agents/skills/<name>/SKILL.md`; folder and frontmatter
+names agree. The two module entry points add domain criteria, not copied
+Factory procedures. Existing specialist and compatibility routes stay available.
 
 ## Skill index
 
-- `.agents/skills/agentic-powerbi-system/SKILL.md`: primary route for prior-run
+- `.agents/skills/powerbi-foundation/SKILL.md`: Power BI readiness and preparation
+  for the intended project work.
+- `.agents/skills/powerbi-adlc/SKILL.md`: Power BI criteria and specialist routing
+  within the adopting project's Factory ADLC.
+- `.agents/skills/agentic-powerbi-system/SKILL.md`: optional legacy route for prior-run
   inspection, specialist routing, and durable proof.
 - `.agents/skills/powerbi/SKILL.md`: business questions, decisions, KPI
   contracts, and Power BI domain audit.
@@ -29,7 +33,7 @@ folder name and the skill's frontmatter `name` must agree.
 Validate this shelf directly with
 `python3 workspace/engine/checks.py --skills-only`.
 
-Shared Spec, Build, Review and Ship come from the installed AIOS plugin.
-This shelf contains specialist methods only; a domain review or audit adds
-local criteria without copying the generic lifecycle. Direct tasks use the
-current session; no lead/worker launch is required merely to enter this System.
+Factory supplies the generic lifecycle in adopting projects. This repository
+uses its installed AIOS procedures for repository maintenance. Neither needs
+a second lead or worker merely to read a specialist skill. Domain checks add
+criteria to the selected lifecycle; they do not replace its acceptance rules.

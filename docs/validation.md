@@ -19,6 +19,11 @@ The doctor requires Node.js, Git, and Python for the local engine. Fabric,
 optional. A missing optional command is an unavailable check, not a failure
 that can be filled by assumption.
 
+These commands check the module itself. To validate a separate adopting
+project, use the [module path contract](factory-module.md#paths-and-tools)
+and pass its explicit absolute path. Inspect the reported report/model count:
+a clean scan of zero objects does not validate an external Power BI project.
+
 The package prepack guard allows blank `.gitkeep` seed placeholders, the blank
 `workspace/history/runs.jsonl`, and deliberate curated examples. It refuses to
 package non-empty run history or mutable workspace directories and leaves that

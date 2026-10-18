@@ -33,6 +33,44 @@ function runValidatorFixtures() {
   process.stdout.write("PBIP validator fixtures: PASS\n");
 }
 
+function testExternalTargets() {
+  const temporary = fs.mkdtempSync(path.join(os.tmpdir(), "powerbi-target-"));
+  const validator = path.join(ROOT, "workspace/engine/validate-pbip.mjs");
+  const valid = path.join(ROOT, cases[0].path);
+  const invalid = path.join(ROOT, cases[1].path);
+  const missing = path.join(temporary, "missing");
+  const changed = path.join(temporary, "measure.tmdl");
+  const unsupported = path.join(temporary, "query.dax");
+  fs.writeFileSync(changed, "measure Revenue = 1\n");
+  fs.writeFileSync(unsupported, "EVALUATE ROW(\"Revenue\", 1)\n");
+  try {
+    const scenarios = [
+      { args: [valid], status: 0, message: /PBIP validation clean/ },
+      { args: [invalid], status: 2, message: /ERRORS:/ },
+      { args: [missing], status: 2, message: /Validation target does not exist/ },
+      { args: [temporary], status: 0, message: /Checked 0 report\(s\) and 0 semantic model\(s\)/ },
+      { args: ["--changed", changed], status: 0, message: /PBIP validation clean/ },
+      { args: ["--changed", unsupported], status: 1, message: /No applicable changed-file check/ },
+      { args: ["--changed", missing], status: 2, message: /Changed target must be an existing file/ },
+      { args: ["--changed", temporary], status: 2, message: /Changed target must be an existing file/ },
+      { args: ["--changed"], status: 2, message: /--changed requires a file path/ },
+      { args: ["--changed", "--ignore-tests"], status: 2, message: /--changed requires a file path/ },
+    ];
+    for (const scenario of scenarios) {
+      const result = spawnSync(process.execPath, [validator, ...scenario.args], {
+        cwd: temporary,
+        encoding: "utf8",
+      });
+      const output = `${result.stdout}\n${result.stderr}`;
+      assert.equal(result.status, scenario.status, `${scenario.args.join(" ")}: ${output}`);
+      assert.match(output, scenario.message);
+    }
+  } finally {
+    fs.rmSync(temporary, { recursive: true, force: true });
+  }
+  process.stdout.write("External validator targets: PASS (valid/invalid, missing, changed-file arguments)\n");
+}
+
 function temporarySeed() {
   const parent = fs.mkdtempSync(
     path.join(os.tmpdir(), "agentic-powerbi-system-pack-"),
@@ -198,6 +236,7 @@ function testPackRefusesStateFileAndPreservesIt() {
 }
 
 runValidatorFixtures();
+testExternalTargets();
 testCleanSeedPackage();
 testCuratedExampleRemainsPackageable();
 testPackRefusesTracedStateAndPreservesEvidence();

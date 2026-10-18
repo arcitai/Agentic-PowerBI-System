@@ -1,11 +1,15 @@
-# Agentic Power BI System
+# Power BI for Factory
 
 Turn a business question into an owned, validated Power BI model, report, and
 decision journey that can retain its operational proof across runs.
 
 ## Shared lifecycle
 
-Use the installed AIOS plugin (0.4.0 or later) for shared procedures:
+For an adopting project, Factory owns general Foundation, AgentOps and ADLC.
+This module adds Power BI preparation and domain criteria; it does not copy
+Factory or become another agent runtime. See [module adoption](docs/factory-module.md).
+
+For maintenance of this repository, use the installed AIOS plugin (0.4.0 or later) for shared procedures:
 `aios-spec-work`, `aios-build-work`, `aios-review-work` and `aios-ship-work`.
 Spec owns conditional technology selection; Review owns generic repository
 health audits. Resolve these skills through the harness, not copied files or
@@ -22,27 +26,27 @@ not a dependency of the product at runtime; if unavailable, report the method
 gap and perform only work adequately covered by the local contract. Do not
 recreate generic skills locally.
 
-## System contract
+## Module contract
 
-This repository is the standalone Agentic Power BI System. It follows the
-System Template contract: `workspace/` is persistent operational truth,
-`examples/` contains only deliberate standalone proof, and `docs/` contains
-the public contract and validation recipe. The System is self-contained and is
-not installed into another agent runtime.
+This repository is the Power BI domain module for Factory. The main routes are
+`.agents/skills/powerbi-foundation/SKILL.md` for readiness and
+`.agents/skills/powerbi-adlc/SKILL.md` for accepted Power BI work. The skill index
+is `.agents/skills/README.md`. The adopting project owns its business brief,
+models, reports and evidence; do not create a second mandatory ledger here.
+Keep the module checkout intact so specialist references and validators resolve.
 
-The repository-local shelf and its ownership rules are indexed in
-`.agents/skills/README.md`. The primary route is
-`.agents/skills/agentic-powerbi-system/SKILL.md`. It first inspects relevant
-records in `workspace/history/runs.jsonl`, routes Power BI work through the
-specialist skills, and preserves input, output, proof, failure, recovery, and
-previous-run references. Request content is represented by references and
-structured facts, never by transcript files. Do not put secrets, tenant
-identifiers, private data, or generated local Power BI state in the repository.
+The existing `agentic-powerbi-system` route and `workspace/` seed remain an
+optional compatibility workflow for existing users. Its append-only evidence,
+failure/recovery and explicit example-promotion rules still apply when selected.
+`examples/` holds deliberate proof and `docs/` holds the public contracts.
+Do not put secrets, tenant identifiers, private data or generated local Power BI
+state in this module's Git history or distributable package.
 
 ## Start
 
-1. Read `workspace/PROJECT-BRIEF.md` and preserve any resolved business or
-   project context.
+1. Read the adopting project’s existing brief and preserve resolved context.
+   `workspace/PROJECT-BRIEF.md` supplies missing Power BI criteria; it is not a
+   requirement to create a duplicate brief. Use it directly in the optional seed workflow.
 2. For Power BI outcomes, resolve the relevant decision, audience, KPI definitions,
    data owners, refresh/runtime, proof, and optional design handoff from existing
    context. Repository maintenance does not require a new business brief.
@@ -54,6 +58,8 @@ identifiers, private data, or generated local Power BI state in the repository.
 
 ## Specialist routes
 
+- `.agents/skills/powerbi-foundation/SKILL.md`: Power BI readiness and preparation
+- `.agents/skills/powerbi-adlc/SKILL.md`: domain routing within Factory ADLC
 - `.agents/skills/powerbi/SKILL.md`: business question, decision, KPI, and
   audit framing
 - `.agents/skills/pbip/SKILL.md`: PBIP/PBIR/TMDL structure and safe edits

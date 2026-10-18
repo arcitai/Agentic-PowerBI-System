@@ -36,9 +36,13 @@ valid when their structure and references can be checked. Validate affected
 PBIP/PBIR/TMDL files with the `validation` skill; missing native tools are
 reported as unavailable, not required installations.
 
+The validator lives in the module checkout; the target is the actual adopting
+project. Follow the [module path contract](../../../docs/factory-module.md#paths-and-tools)
+and use absolute paths, so running from the module cannot check the wrong repo.
+
 ```bash
-node workspace/engine/validate-pbip.mjs .
-pbir validate "Report.Report" --all
+node /path/to/powerbi-module/workspace/engine/validate-pbip.mjs /absolute/project
+pbir validate "/absolute/project/Report.Report" --all
 ```
 
 ## Data and semantic-model change boundary
