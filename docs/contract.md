@@ -1,16 +1,18 @@
-# Agentic Power BI System contract
+# Power BI for Factory contract
 
 ## Product and boundary
 
-The canonical product name is **Agentic Power BI System**. This repository is a
-standalone System mapped to the System Template contract. It owns its local
-briefs, model/report work, state, run evidence, history, and learning under
-`workspace/`.
+**Power BI for Factory** is a domain module: Power BI Foundation prepares the
+intended work, and Power BI ADLC adds domain criteria to Factory's existing
+lifecycle. Specialist skills and local validators remain canonical here. The
+adopting project owns its context, model/report work and delivery evidence.
+[Module adoption](factory-module.md) defines the entry points and path contract.
 
-The first-class concepts remain Space, System, and Project. This repository is
-the System capability; a bounded Power BI delivery is a Project outcome inside
-its brief and workspace. The repository does not import another System,
-centralize records, or require a service to interpret its contract.
+The stable repository/package identifiers and the `Agentic Power BI System`
+evidence runner remain for compatibility. When the optional legacy workflow is
+selected, `workspace/` owns its local briefs, state, runs, history and learning.
+The legacy record contract below still applies. Ordinary module use does not
+require these records or a separate orchestration layer.
 
 ## Functional roots
 
@@ -18,17 +20,18 @@ Only these visible functional roots are used:
 
 | Path | Purpose |
 | --- | --- |
-| `workspace/` | persistent briefs, model/report work, state, and operational truth |
+| `workspace/` | local tools and the optional legacy brief, model/report, state and evidence seed |
 | `examples/` | deliberately curated standalone proof |
 | `docs/` | public contract and validation notes |
 
 Technical implementation lives below `workspace/engine/`. Root instructions,
-the README, the primary System skill, package metadata, and hidden CI are shell
+the README, module entry points, specialist skills, package metadata, and hidden CI are shell
 support rather than additional functional roots.
 
-## Primary route
+## Optional legacy evidence route
 
-`.agents/skills/agentic-powerbi-system/SKILL.md` is the one primary System skill.
+`.agents/skills/agentic-powerbi-system/SKILL.md` is the compatibility route for
+existing standalone workspaces.
 It must:
 
 1. inspect relevant prior records before routing work;

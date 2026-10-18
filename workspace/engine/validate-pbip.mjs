@@ -186,21 +186,43 @@ function validateTmdl(file) {
 
 function validateChanged(file) {
   const absolute = path.resolve(process.cwd(), file);
-  if (!isFile(absolute)) return;
+  if (!isFile(absolute)) {
+    add("ERROR", absolute, "Changed target must be an existing file.", "For a deletion, validate the containing project directory instead.");
+    return;
+  }
   const normalized = absolute.replaceAll(path.sep, "/");
+  let checked = false;
   if ((absolute.endsWith(".json") || absolute.endsWith(".pbir")) && normalized.includes(".Report/")) {
     if (path.basename(absolute) === "definition.pbir") validateDefinitionPbir(absolute);
     else readJson(absolute);
+    checked = true;
   }
-  if (absolute.endsWith(".tmdl")) validateTmdl(absolute);
+  if (absolute.endsWith(".tmdl")) {
+    validateTmdl(absolute);
+    checked = true;
+  }
+  if (checked) {
+    console.log("Checked 1 changed file.");
+  } else {
+    add("WARN", absolute, "No applicable changed-file check.", "Validate the containing project directory for structural checks; use relevant native tools for unsupported semantics.");
+  }
 }
 
-if (changedPath) {
-  validateChanged(changedPath);
+if (changedIndex >= 0) {
+  if (!changedPath || changedPath.startsWith("--")) {
+    add("ERROR", root, "--changed requires a file path.");
+  } else {
+    validateChanged(changedPath);
+  }
+} else if (!isDir(root) && !isFile(root)) {
+  add("ERROR", root, "Validation target does not exist or is not a regular file or directory.", "Pass the existing Power BI project directory or file explicitly.");
 } else {
   const start = isDir(root) ? root : path.dirname(root);
-  for (const report of findDirs(start, ".Report")) validateReport(report);
-  for (const model of findDirs(start, ".SemanticModel")) validateSemanticModel(model);
+  const reports = findDirs(start, ".Report");
+  const models = findDirs(start, ".SemanticModel");
+  for (const report of reports) validateReport(report);
+  for (const model of models) validateSemanticModel(model);
+  console.log(`Checked ${reports.length} report(s) and ${models.length} semantic model(s).`);
 }
 
 const errors = findings.filter((f) => f.level === "ERROR");

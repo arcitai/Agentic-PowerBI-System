@@ -1,11 +1,13 @@
 ---
 name: agentic-powerbi-system
-description: Primary System route for durable, decision-first Power BI work, specialist routing, and append-only proof.
+description: Optional compatibility route for existing standalone Power BI workspaces with append-only run evidence.
 ---
 
-# Agentic Power BI System primary route
+# Agentic Power BI System compatibility route
 
-This is the one primary System skill. It preserves operational truth in
+For new Factory adoption, use `powerbi-foundation` and `powerbi-adlc` instead.
+Use this route when the caller selects the existing standalone evidence flow;
+it is not a required step in module work. It preserves operational truth in
 `workspace/` and uses the existing Power BI specialist skills for the work
 they own. It is a filesystem workflow, not a service or orchestration runtime.
 

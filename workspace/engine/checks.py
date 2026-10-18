@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Structural, contract, and stale-route checks for the standalone System."""
+"""Structural, contract, and stale-route checks for the Power BI module and compatibility seed."""
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
 
-PRODUCT_NAME = "Agentic Power BI System"
+PRODUCT_NAME = "Power BI for Factory"
 VISIBLE_FUNCTIONAL_ROOTS = {"workspace", "examples", "docs"}
 PUBLIC_ROOT_FILES = {"AGENTS.md", "README.md", "LICENSE"}
 TOOLCHAIN_ROOT_FILES = {
@@ -39,6 +39,8 @@ REQUIRED_PATHS = (
     "README.md",
     ".agents/skills/README.md",
     ".agents/skills/agentic-powerbi-system/SKILL.md",
+    ".agents/skills/powerbi-foundation/SKILL.md",
+    ".agents/skills/powerbi-adlc/SKILL.md",
     ".agents/skills/powerbi/SKILL.md",
     ".agents/skills/pbip/SKILL.md",
     ".agents/skills/dax/SKILL.md",
@@ -65,6 +67,7 @@ REQUIRED_PATHS = (
     "workspace/engine/tests/test_template.py",
     "workspace/engine/tests/test-validator.mjs",
     "docs/contract.md",
+    "docs/factory-module.md",
     "docs/validation.md",
 )
 STALE_ROOT_NAMES = {
@@ -558,7 +561,7 @@ def check_ledger(root: Path) -> List[str]:
 
 
 def _parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Check the Agentic Power BI System shell.")
+    parser = argparse.ArgumentParser(description=f"Check the {PRODUCT_NAME} module and compatibility seed.")
     parser.add_argument(
         "--root",
         type=Path,
@@ -578,7 +581,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     root = (args.root or repository_root()).resolve()
     errors = check_skill_shelf(root) if args.skills_only else check_structure(root)
     if errors:
-        print("FAIL: Agentic Power BI System checks", file=sys.stderr)
+        print(f"FAIL: {PRODUCT_NAME} checks", file=sys.stderr)
         for error in errors:
             print(f"- {error}", file=sys.stderr)
         return 1
